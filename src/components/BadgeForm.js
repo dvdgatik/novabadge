@@ -2,12 +2,18 @@ import React from 'react';
 
 
 class BadgeForm extends React.Component {
-
+  state = {
+  };
   handleChange = (e) =>  {
-    console.log({
+    /*console.log({
       name:  e.target.name,
       value: e.target.value,
       class: e.target.className
+    });*/
+
+    this.setState({
+      //firstName: e.target.value
+       [e.target.name]: e.target.value
     });
 
   }
@@ -20,6 +26,7 @@ class BadgeForm extends React.Component {
     //Hacer que un formulario no se envie 
     e.preventDefault();
     console.log('Form was submited');
+    console.log(this.state);
   }
 
 
@@ -31,10 +38,61 @@ class BadgeForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="firstName">First Name</label>
-          <input onChange={this.handleChange} className='form-control' type='text' name='firstName' id='firstName'/>
+          <input 
+          onChange={this.handleChange} 
+          className='form-control' 
+          type='text' 
+          name='firstName' 
+          id='firstName'
+          value={this.state.firstName}
+          />
         </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input 
+          onChange={this.handleChange} 
+          className='form-control' 
+          type='text' name='lastName' 
+          id='lastName'
+          value={this.state.lastName}
+          />
+        </div>
+         <div className="form-group">
+          <label htmlFor="email">E mail</label>
+          <input 
+          onChange={this.handleChange} 
+          className='form-control' 
+          type='email' 
+          name='email' 
+          id='email'
+          value={this.state.email}
+          />
+        </div>
+         <div className="form-group">
+          <label htmlFor="jobTitle">Job Title</label>
+          <input 
+          onChange={this.handleChange} 
+          className='form-control' 
+          type='text' 
+          name='jobTitle' 
+          id='jobTitle'
+          value={this.state.jobTitle}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="twitter">Twitter</label>
+          <input onChange={this.handleChange}
+           className='form-control'
+           type='text'
+           name='twitter'
+           id='twitter'
+           value={this.state.twitter}
+           />
+        </div>
+       
         <button type='submit' onClick={this.handleClick} className="btn btn-primary">Save</button>
         </form>
+
       </div>
     );
   }
