@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import {Link} from  'react-router-dom';
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
@@ -49,8 +50,8 @@ class Badges extends React.Component {
          </div>
          </div>
          <div className='Badge__container'>
-           <div className="Badges__buttons">
-             <a href="/badges/new" className='btn btn-primary'>New Badge</a>
+           <div className=" col-8 Badges__buttons ">
+             <Link to="/badges/new" className='btn btn-primary'>New Badge</Link>
            </div>  
          {/* Listar cada uno de los datos en un solo componente*/}
            <div className='Badges__list'>

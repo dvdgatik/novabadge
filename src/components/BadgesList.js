@@ -24,11 +24,8 @@ class BadgesList extends React.Component {
                  <span className='Badge__span-list'>{badge.firstName} {badge.lastName}</span>
                   <span className='Badge__span-list twitter'>@{badge.twitter}</span>
                   <span className='Badge__span-list job-title'>{badge.jobTitle}</span>
-           
                  </div>
                </div>
-
-                
              </li>
              )
 

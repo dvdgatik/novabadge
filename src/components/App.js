@@ -1,25 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-import Layout from './Layout';
-import Home from '../pages/Home';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Badges from '../pages/Badges';
-import BadgeNew from '../pages/BadgeNew';
-import NotFound from '../pages/NotFound';
-
+import BadgesNew from '../pages/BadgeNew';
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/badges" component={Badges} />
-          <Route exact path="/badges/new" component={BadgeNew} />
-          <Route component={NotFound} />
-        </Switch>
-      </Layout>
+      <Switch>
+         <Route exact path='/badges' component={Badges}/>
+         <Route exact path='/badges/new' component={BadgesNew}/>
+       </Switch> 
     </BrowserRouter>
-  );
+    ) 
+
 }
 
 export default App;
