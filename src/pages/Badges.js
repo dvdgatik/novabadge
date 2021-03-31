@@ -7,8 +7,26 @@ import BadgesList from '../components/BadgesList';
 
 class Badges extends React.Component {
 
-  state = {
-    data: [
+ 
+
+  //constructor recibe props
+  /* */
+  constructor(props) {
+    super(props);
+    console.log('1. constructor()');
+
+     this.state = { 
+       data: []
+    
+  };
+  }
+
+  componentDidMount() {
+    console.log('3. componentDidMount()');
+    this.timeoutId = setTimeout(()=>{
+      this.setState({
+
+        data: [
       {
         id: '1234561',
         firstName: 'Jorge',
@@ -37,8 +55,38 @@ class Badges extends React.Component {
         avatarurl: 'https://ui-avatars.com/api/?name=Ruben+Flores'
       }
     ]
+      })
+    },3000);
+
+    //Y si existe ese id y ese trabajo esta pendiente lo cancela (el Timeout no va a ocurrir)
+
+    
+
   }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    console.log('5. componentDidUpdate()');
+    //valores anteriores
+    console.log({
+      prevProps: prevProps, prevState: prevState
+    });
+    //valores actuales
+    console.log({
+      props: this.props,
+      state: this.state
+    });
+
+  }
+
+  componentWillUnmount() {
+    //Ayuda a evitar la perdida de memoria
+    console.log('6. compunentWillUnmount');
+    clearTimeout(this.timeoutId);
+  }
+
   render() {
+    console.log('2/3. Render')
      return (
        <React.Fragment>
          {/*<Navbar/>*/}
