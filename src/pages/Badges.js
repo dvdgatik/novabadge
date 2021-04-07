@@ -4,14 +4,19 @@ import {Link} from  'react-router-dom';
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
+import api from '../api';
 
 class Badges extends React.Component {
 
- 
+ state = {
+   loading: true,
+   error: null,
+   data: undefined
+ }
 
   //constructor recibe props
   /* */
-  constructor(props) {
+  /*constructor(props) {
     super(props);
     console.log('1. constructor()');
 
@@ -83,9 +88,34 @@ class Badges extends React.Component {
     //Ayuda a evitar la perdida de memoria
     console.log('6. compunentWillUnmount');
     clearTimeout(this.timeoutId);
+  }*/
+
+  componentDidMount() {
+    this.fetchData()
   }
 
+  fetchData = async () => {
+    this.setState({loading: true, error: null});
+
+    try {
+      // esperar la respuesta con await
+      // para poder usar await hay que declarar la funcion como async
+      const data = await api.badges.list(); //Esta llamada es asincrona regresa una promesa
+      // si hay un error se guarda en el catch
+      this.setState({ loading: false, data: data});
+    } catch (error) {
+      this.setState({loading: false, error: error })
+    }
+  };
+
   render() {
+    if (this.state.loading == true) {
+      return 'Loading...';
+    }
+
+    if (this.state.error) {
+      return `Error ${this.state.error.message}`;
+    }
     console.log('2/3. Render')
      return (
        <React.Fragment>
